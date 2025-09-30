@@ -23,17 +23,16 @@
     --shadow-sm: 0 4px 6px rgba(0, 0, 0, 0.1);
     --shadow-md: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0,0,0,0.05);
     --shadow-lg: 0 20px 25px rgba(0,0,0,0.15), 0 8px 10px rgba(0,0,0,0.06);
-    --shadow-glow: 0 0 20px rgba(var(--accent-rgb), 0.3); /* var(--accent-rgb) se definirá luego */
+    --shadow-glow: 0 0 20px rgba(var(--accent-rgb), 0.3);
 
     --transition-fast: all 0.2s ease-in-out;
     --transition-medium: all 0.3s ease-in-out;
     --transition-slow: all 0.5s ease-in-out;
 }
-/* Para el shadow-glow, necesitaríamos definir --accent-rgb */
-:root {
-    --accent-primary-rgb: 100, 255, 218; /* RGB de #64FFDA */
-}
 
+:root {
+    --accent-primary-rgb: 100, 255, 218;
+}
 
 /* --- RESET & BASE --- */
 *, *::before, *::after {
@@ -44,7 +43,7 @@
 
 html {
     scroll-behavior: smooth;
-    font-size: 16px; /* Base para REM */
+    font-size: 16px;
 }
 
 body {
@@ -54,7 +53,7 @@ body {
     line-height: 1.7;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden; /* Prevenir scroll horizontal por animaciones AOS */
+    overflow-x: hidden;
 }
 
 .container {
@@ -140,7 +139,6 @@ ul { list-style: none; }
   40% { transform: scale(1.0); }
 }
 
-
 /* --- HEADER --- */
 #main-header {
     position: fixed;
@@ -149,7 +147,7 @@ ul { list-style: none; }
     width: 100%;
     z-index: 1000;
     height: var(--header-height);
-    background-color: rgba(10, 25, 47, 0.85); /* var(--bg-dark) con alpha */
+    background-color: rgba(10, 25, 47, 0.85);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     transition: var(--transition-medium);
@@ -210,10 +208,10 @@ ul { list-style: none; }
     background-color: rgba(var(--accent-primary-rgb), 0.1);
     color: var(--accent-primary);
 }
-.nav-link.btn-outline::after { display: none; } /* No necesita subrayado */
+.nav-link.btn-outline::after { display: none; }
 
 #mobile-menu-toggle {
-    display: none; /* Se mostrará en mobile */
+    display: none;
     background: none;
     border: none;
     color: var(--text-primary);
@@ -265,10 +263,8 @@ ul { list-style: none; }
     justify-content: center;
     text-align: center;
     position: relative;
-    background-image: url('proectoarea1221.jpe'); /* Tu imagen original si es de buena calidad */
-    background-size: cover;
-    background-position: center center;
-    background-attachment: fixed; /* Efecto parallax simple */
+    background: linear-gradient(135deg, var(--bg-dark) 0%, var(--bg-medium) 100%);
+    background-attachment: fixed;
 }
 .hero-background-overlay {
     position: absolute;
@@ -359,7 +355,7 @@ ul { list-style: none; }
     border-radius: 50%;
     width: 70px;
     height: 70px;
-    line-height: 40px; /* Ajustar para centrar ícono */
+    line-height: 40px;
 }
 .service-card h3 {
     color: var(--text-headings);
@@ -448,7 +444,7 @@ ul { list-style: none; }
 .project-item {
     display: flex;
     gap: 2rem;
-    align-items: flex-start; /* Alinear elementos al inicio */
+    align-items: flex-start;
     background-color: var(--bg-medium);
     padding: 2rem;
     border-radius: var(--border-radius-md);
@@ -462,8 +458,8 @@ ul { list-style: none; }
 }
 .project-item:nth-child(even) { flex-direction: row-reverse; }
 .project-image {
-    flex: 0 0 40%; /* Flex-grow, flex-shrink, flex-basis */
-    max-width: 300px; /* Controlar tamaño de la imagen */
+    flex: 0 0 40%;
+    max-width: 300px;
     border-radius: var(--border-radius-sm);
     overflow: hidden;
 }
@@ -494,45 +490,79 @@ ul { list-style: none; }
 }
 .project-info p { font-size: 0.95rem; color: var(--text-secondary); }
 
-/* --- CLIENT LOGOS SECTION --- */
-.client-logos-section { background-color: var(--bg-medium); }
-.client-logos-section .section-title h3 { /* Un subtítulo más pequeño */
-    font-size: clamp(1.4rem, 3vw, 1.8rem);
-    color: var(--text-headings);
-    margin-bottom: 0;
+/* --- DETAILED CLIENTS SECTION --- */
+.detailed-clients-section {
+    background-color: var(--bg-medium);
 }
-.client-logos-grid {
+
+.detailed-clients-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 2rem;
-    align-items: center;
-    margin-top: 3rem;
 }
-.logo-item {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 1rem;
-    height: 80px; /* Altura fija para uniformidad */
-}
-.logo-item img {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: contain;
-    filter: grayscale(100%) opacity(0.6);
+
+.detailed-client-card {
+    background-color: var(--bg-light);
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
     transition: var(--transition-medium);
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(var(--accent-primary-rgb), 0.05);
 }
-.logo-item:hover img {
-    filter: grayscale(0%) opacity(1);
-    transform: scale(1.1);
+
+.detailed-client-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: var(--shadow-glow);
+    border-color: rgba(var(--accent-primary-rgb), 0.2);
+}
+
+.client-card-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+}
+
+.client-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+}
+
+.detailed-client-card:hover .client-card-image img {
+    transform: scale(1.05);
+}
+
+.client-card-content {
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.client-card-content h4 {
+    font-size: 1.25rem;
+    color: var(--text-headings);
+    margin-bottom: 0.75rem;
+    font-weight: 600;
+}
+
+.client-card-content p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin-bottom: 0;
+    flex-grow: 1;
 }
 
 /* --- CONTACT SECTION --- */
 .contact-section {
     position: relative;
-    overflow: hidden; /* Para las formas de fondo */
+    overflow: hidden;
 }
-.contact-background-shapes { /* Elemento decorativo */
+.contact-background-shapes {
     position: absolute;
     top: -50px;
     left: -50px;
@@ -545,7 +575,7 @@ ul { list-style: none; }
 .contact-container {
     display: flex;
     gap: 3rem;
-    align-items: flex-start; /* Alinear al inicio */
+    align-items: flex-start;
     position: relative;
     z-index: 1;
 }
@@ -573,7 +603,7 @@ ul { list-style: none; }
 .contact-details p i {
     color: var(--accent-primary);
     margin-right: 10px;
-    width: 20px; /* Para alinear texto */
+    width: 20px;
     text-align: center;
 }
 
@@ -590,7 +620,7 @@ ul { list-style: none; }
 }
 .form-group input, .form-group textarea {
     width: 100%;
-    padding: 12px 0px 10px; /* Espacio para label flotante */
+    padding: 12px 0px 10px;
     background-color: transparent;
     border: none;
     border-bottom: 1px solid var(--text-secondary);
@@ -613,7 +643,7 @@ ul { list-style: none; }
     transition: all 0.3s ease;
 }
 .form-group input:focus + label,
-.form-group input:not(:placeholder-shown) + label, /* Si hay contenido */
+.form-group input:not(:placeholder-shown) + label,
 .form-group textarea:focus + label,
 .form-group textarea:not(:placeholder-shown) + label {
     top: -10px;
@@ -629,13 +659,12 @@ ul { list-style: none; }
     text-align: center;
 }
 
-
 /* --- FOOTER --- */
 .main-footer {
     background-color: var(--bg-medium);
     padding: 3rem 0;
     border-top: 1px solid rgba(var(--accent-primary-rgb),0.1);
-    margin-top: auto; /* Empujar al fondo si el contenido es corto */
+    margin-top: auto;
 }
 .footer-container {
     display: flex;
@@ -693,73 +722,6 @@ ul { list-style: none; }
     transform: scale(1.1);
 }
 
-/* --- DETAILED CLIENTS SECTION (Nueva Sección Mejorada) --- */
-.detailed-clients-section {
-    background-color: var(--bg-medium); /* O var(--bg-dark) si prefieres más contraste */
-}
-
-.detailed-clients-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem; /* Espacio entre tarjetas */
-}
-
-.detailed-client-card {
-    background-color: var(--bg-light); /* Un poco más claro que el fondo de la sección */
-    border-radius: var(--border-radius-md);
-    overflow: hidden; /* Para que la imagen no se salga del borde redondeado */
-    box-shadow: var(--shadow-sm);
-    transition: var(--transition-medium);
-    display: flex;
-    flex-direction: column; /* Para que el contenido se apile verticalmente */
-    border: 1px solid rgba(var(--accent-primary-rgb), 0.05); /* Borde sutil */
-}
-
-.detailed-client-card:hover {
-    transform: translateY(-8px) scale(1.02);
-    box-shadow: var(--shadow-glow); /* Usamos el brillo de acento */
-    border-color: rgba(var(--accent-primary-rgb), 0.2);
-}
-
-.client-card-image {
-    width: 100%;
-    height: 200px; /* Altura fija para las imágenes */
-    overflow: hidden; /* Asegura que la imagen no se desborde si es más grande */
-}
-
-.client-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover; /* 'cover' asegura que la imagen llene el contenedor, recortando si es necesario */
-    transition: transform 0.4s ease;
-}
-
-.detailed-client-card:hover .client-card-image img {
-    transform: scale(1.05); /* Efecto de zoom sutil al pasar el mouse */
-}
-
-.client-card-content {
-    padding: 1.5rem;
-    flex-grow: 1; /* Para que el contenido ocupe el espacio disponible */
-    display: flex;
-    flex-direction: column;
-}
-
-.client-card-content h4 {
-    font-size: 1.25rem; /* Tamaño del título de la tarjeta */
-    color: var(--text-headings);
-    margin-bottom: 0.75rem;
-    font-weight: 600;
-}
-
-.client-card-content p {
-    font-size: 0.9rem; /* Tamaño del texto de descripción */
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin-bottom: 0; /* Quitamos el margen inferior por defecto del párrafo */
-    flex-grow: 1; /* Asegura que el párrafo ocupe el espacio antes de un posible botón */
-}
-
 /* --- RESPONSIVE --- */
 @media (max-width: 992px) {
     .founder-container { flex-direction: column; text-align: center; }
@@ -769,10 +731,10 @@ ul { list-style: none; }
 
     .project-item, .project-item:nth-child(even) {
         flex-direction: column;
-        align-items: center; /* Centrar imagen en mobile */
+        align-items: center;
         text-align: center;
     }
-    .project-image { max-width: 100%; flex-basis: auto; } /* Imagen toma ancho */
+    .project-image { max-width: 100%; flex-basis: auto; }
     .project-info { margin-top: 1.5rem; }
 
     .contact-container { flex-direction: column; }
@@ -782,9 +744,9 @@ ul { list-style: none; }
 }
 
 @media (max-width: 768px) {
-    html { font-size: 15px; } /* Reducir base para pantallas pequeñas */
+    html { font-size: 15px; }
     .main-nav {
-        display: none; /* Ocultar para menú hamburguesa */
+        display: none;
         position: fixed;
         top: var(--header-height);
         left: 0;
@@ -806,16 +768,15 @@ ul { list-style: none; }
     .nav-link.btn-outline { margin-left: 0; }
     #mobile-menu-toggle { display: block; }
     #mobile-menu-toggle.open .fa-bars { display: none; }
-    #mobile-menu-toggle.open .fa-times { display: block; } /* Necesitarás añadir fa-times al icono con JS */
-    #mobile-menu-toggle .fa-times { display: none; } /* Ocultar por defecto */
-
+    #mobile-menu-toggle.open .fa-times { display: block; }
+    #mobile-menu-toggle .fa-times { display: none; }
 
     .hero-content h1 { font-size: 2rem; }
     .hero-content p { font-size: 1rem; }
     .hero-cta { flex-direction: column; gap: 1rem; align-items: center; }
     .btn { padding: 10px 25px; font-size: 0.95rem;}
 
-    .services-grid { grid-template-columns: 1fr; } /* Una columna */
+    .services-grid { grid-template-columns: 1fr; }
     .section-padding { padding: 60px 0; }
     .section-padding-deep { padding: 90px 0; }
     .section-title h2 { font-size: 1.8rem; }
@@ -827,7 +788,7 @@ ul { list-style: none; }
     .hero-content h1 { font-size: 1.8rem; }
 }
 
-/* SCROLLBAR (Opcional, para navegadores WebKit) */
+/* SCROLLBAR */
 ::-webkit-scrollbar {
     width: 8px;
 }
